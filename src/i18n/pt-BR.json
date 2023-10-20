@@ -1,0 +1,12 @@
+{
+  "appTitle": "Título del app",
+  "pages": {
+    "home": {
+      "meta": {
+        "title": "Página inicial",
+        "description": ""
+      },
+      "text": "Página inicial"
+    }
+  }
+}

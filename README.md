@@ -1,4 +1,3 @@
-# Flash cards
+# New project
 
-A flash card app I built to help study languages and remembering cool stuff.
-
+This is a new project. What should I name it?
