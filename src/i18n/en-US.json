@@ -21,7 +21,7 @@
       "edit": "Edit card",
       "view": "View card"
     },
-    "addButton": "Add",
+    "addButton": "New card",
     "editButton": "Update",
     "form": {
       "label": {
@@ -38,7 +38,7 @@
   },
   "cardTableDialog": {
     "title": "Cards",
-    "addButton": "Add",
+    "addButton": "Add new card",
     "table": {
       "label": "Label",
       "actions": "Actions"

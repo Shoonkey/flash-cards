@@ -6,20 +6,20 @@
         "title": "Página inicial",
         "description": ""
       },
-      "title": "Estude usando flash cards",
+      "title": "Estude usando cartões de memória",
       "dataNotice": "Todos os seus dados são salvos localmente no seu dispositivo.",
-      "explanation": "Clique em um card para virá-lo e ver sua descrição.",
+      "explanation": "Clique em um cartão para virá-lo e ver sua descrição.",
       "emptyCardPlaceholder": {
-        "label": "Adicione cards para começar",
-        "description": "Adicione pelo menos 5 cards para começar a estudar"
+        "label": "Adicione cartões para começar",
+        "description": "Adicione pelo menos 5 cartões para começar a estudar"
       }
     }
   },
   "cardDialog": {
     "title": {
-      "new": "Adicionar card",
-      "edit": "Editar card",
-      "view": "Ver card"
+      "new": "Adicionar cartão",
+      "edit": "Editar cartão",
+      "view": "Ver cartão"
     },
     "addButton": "Adicionar",
     "editButton": "Atualizar",
@@ -37,8 +37,8 @@
     }
   },
   "cardTableDialog": {
-    "title": "Cards",
-    "addButton": "Adicionar",
+    "title": "Cartões",
+    "addButton": "Adicionar novo cartão",
     "table": {
       "label": "Rótulo",
       "actions": "Ações"
@@ -46,7 +46,7 @@
   },
   "deleteDialog": {
     "title": "Deletar",
-    "header": "Tem certeza que quer deletar esse card?",
+    "header": "Tem certeza que quer deletar esse cartão?",
     "yesButton": "Sim, pode deletar",
     "noButton": "Não, deixa pra lá"
   }

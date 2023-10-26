@@ -1,12 +1,53 @@
 {
-  "appTitle": "Título del app",
+  "appTitle": "Estudie teoría musical",
   "pages": {
     "home": {
       "meta": {
         "title": "Página principal",
         "description": ""
       },
-      "text": "Página principal"
+      "title": "Estudie usando tarjetas de memoria",
+      "dataNotice": "Todos tus datos son salvos localmente en tu dispositivo.",
+      "explanation": "Hace clic en una tarjeta para voltearla y ver su descripción.",
+      "emptyCardPlaceholder": {
+        "label": "Agrega tarjetas para empezar",
+        "description": "Agrega al menos 5 tarjetas para empezar a estudiar"
+      }
     }
+  },
+  "cardDialog": {
+    "title": {
+      "new": "Agregar tarjeta",
+      "edit": "Editar tarjeta",
+      "view": "Ver tarjeta"
+    },
+    "addButton": "Agregar",
+    "editButton": "Actualizar",
+    "form": {
+      "label": {
+        "title": "Etiqueta",
+        "helperText": "Un rótulo simple, como una palabra.",
+        "errorMessage": "Es necesario definir um rótulo."
+      },
+      "description": {
+        "title": "Descripción",
+        "helperText": "Una descripción que elabore sobre el rótulo.",
+        "errorMessage": "Es necesario definir una descripción."
+      }
+    }
+  },
+  "cardTableDialog": {
+    "title": "Tarjetas",
+    "addButton": "Agregar nueva tarjeta",
+    "table": {
+      "label": "Rótulo",
+      "actions": "Acciones"
+    }
+  },
+  "deleteDialog": {
+    "title": "Borrar",
+    "header": "Estás seguro o segura de que quieres borrar esa tarjeta?",
+    "yesButton": "Sí, puedes borrarla",
+    "noButton": "No, olvídalo"
   }
 }
