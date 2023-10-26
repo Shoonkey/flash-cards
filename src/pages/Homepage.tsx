@@ -1,4 +1,12 @@
-import { Center, Flex, Heading, Spinner } from "@chakra-ui/react";
+import {
+  Center,
+  Flex,
+  Heading,
+  Kbd,
+  ListItem,
+  Spinner,
+  UnorderedList,
+} from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -43,6 +51,29 @@ function FlashCardApp() {
     setLoading(false);
   }, []);
 
+  useEffect(() => {
+    // TODO: Set aria-keyshortcuts on previous and next cards
+
+    const handleKeyPress = (e: KeyboardEvent) => {
+      if (e.shiftKey || e.ctrlKey || e.metaKey) return;
+
+      if (e.key === "ArrowLeft") {
+        // TODO: Move to previous card and focus it
+        console.log("Pressed <");
+        return;
+      }
+
+      if (e.key === "ArrowRight") {
+        // TODO: Move to next card and focus it
+        console.log("Pressed >");
+        return;
+      }
+    };
+
+    document.body.addEventListener("keyup", handleKeyPress);
+    return () => document.body.removeEventListener("keyup", handleKeyPress);
+  }, []);
+
   const cardPositions = getStageCardPositions(metadata.stage);
 
   if (loading)
@@ -68,26 +99,6 @@ function FlashCardApp() {
           setCardTableDialogOpen(false);
         }}
       />
-      <Heading
-        as="h2"
-        size="md"
-        ml={{ base: 0, md: 24 }}
-        mt={{ base: 4, md: 0 }}
-        textAlign={{ base: "center", md: "left" }}
-        color="gray.500"
-      >
-        {t("pages.home.dataNotice")}
-      </Heading>
-      <Heading
-        as="h2"
-        size="md"
-        ml={{ base: 0, md: 24 }}
-        mt={2}
-        textAlign={{ base: "center", md: "left" }}
-        color="gray.500"
-      >
-        {t("pages.home.explanation")}
-      </Heading>
       <Flex flexGrow={1} position="relative">
         {cardPositions.map((position, index) => {
           return (
@@ -120,6 +131,28 @@ function FlashCardApp() {
             />
           );
         })}
+      </Flex>
+      <Flex flexDir="column" gap={2} my={8} textAlign="center">
+        <UnorderedList
+          listStyleType="none"
+          display="flex"
+          gap={2}
+          color="gray.500"
+          mx="auto"
+        >
+          <ListItem>
+            <Kbd>&larr;</Kbd> Previous card
+          </ListItem>
+          <ListItem>
+            <Kbd>&rarr;</Kbd> Next card
+          </ListItem>
+        </UnorderedList>
+        <Heading as="h3" size="sm" color="gray.500">
+          {t("pages.home.dataNotice")}
+        </Heading>
+        <Heading as="h3" size="sm" color="gray.500">
+          {t("pages.home.explanation")}
+        </Heading>
       </Flex>
     </Page>
   );
