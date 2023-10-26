@@ -6,7 +6,48 @@
         "title": "Página inicial",
         "description": ""
       },
-      "text": "Página inicial"
+      "title": "Estude usando flash cards",
+      "dataNotice": "Todos os seus dados são salvos localmente no seu dispositivo.",
+      "explanation": "Clique em um card para virá-lo e ver sua descrição.",
+      "emptyCardPlaceholder": {
+        "label": "Adicione cards para começar",
+        "description": "Adicione pelo menos 5 cards para começar a estudar"
+      }
     }
+  },
+  "cardDialog": {
+    "title": {
+      "new": "Adicionar card",
+      "edit": "Editar card",
+      "view": "Ver card"
+    },
+    "addButton": "Adicionar",
+    "editButton": "Atualizar",
+    "form": {
+      "label": {
+        "title": "Rótulo",
+        "helperText": "Um rótulo simples, como uma palavra.",
+        "errorMessage": "É necessário definir um rótulo."
+      },
+      "description": {
+        "title": "Descrição",
+        "helperText": "Uma descrição que elabore sobre o rótulo.",
+        "errorMessage": "É necessário definir uma descrição."
+      }
+    }
+  },
+  "cardTableDialog": {
+    "title": "Cards",
+    "addButton": "Adicionar",
+    "table": {
+      "label": "Rótulo",
+      "actions": "Ações"
+    }
+  },
+  "deleteDialog": {
+    "title": "Deletar",
+    "header": "Tem certeza que quer deletar esse card?",
+    "yesButton": "Sim, pode deletar",
+    "noButton": "Não, deixa pra lá"
   }
 }

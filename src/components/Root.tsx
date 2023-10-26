@@ -21,7 +21,7 @@ function Root() {
   const { colorMode: theme, setColorMode: setTheme } = useColorMode();
   const navigate = useNavigate();
   const location = useLocation();
-  
+
   const { isSubapp } = useAppSettings();
   const backgroundColor = useColorModeValue("gray.200", "gray.800");
 
@@ -83,15 +83,21 @@ function Root() {
           </Box>
         )}
       </Flex>
-      <Flex
-        flexDir="column"
-        flexGrow={1}
-        minWidth="300px"
-        w="80%"
-        mx="auto"
-        px={0}
-        pb={8}
-      >
+      <Flex flexDir="column" flexGrow={1}>
+        {/* // TODO: Remove after translating to Spanish */}
+        {i18n.language === "es-ES" && (
+          <Box
+            mx="auto"
+            px={6}
+            py={4}
+            borderRadius="16px"
+            bg="gray.700"
+            _light={{ bg: "gray.300" }}
+            mb={2}
+          >
+            Esta página aún no está disponible en español.
+          </Box>
+        )}
         <Routes>
           <Route path="/" element={<Homepage />} />
         </Routes>

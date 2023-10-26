@@ -1,12 +1,53 @@
 {
-  "appTitle": "App title",
+  "appTitle": "Study music theory",
   "pages": {
     "home": {
       "meta": {
         "title": "Homepage",
         "description": ""
       },
-      "text": "Homepage"
+      "title": "Study using flash cards",
+      "dataNotice": "All your data is saved locally on your current device.",
+      "explanation": "Click on a card to flip it and see its description.",
+      "emptyCardPlaceholder": {
+        "label": "Add cards to begin",
+        "description": "Add at least 5 cards to begin studying"
+      }
     }
+  },
+  "cardDialog": {
+    "title": {
+      "new": "Add card",
+      "edit": "Edit card",
+      "view": "View card"
+    },
+    "addButton": "Add",
+    "editButton": "Update",
+    "form": {
+      "label": {
+        "title": "Label",
+        "helperText": "A simple label, like a word.",
+        "errorMessage": "You must define a label."
+      },
+      "description": {
+        "title": "Description",
+        "helperText": "A description that elaborates about the label.",
+        "errorMessage": "You must define a description."
+      }
+    }
+  },
+  "cardTableDialog": {
+    "title": "Cards",
+    "addButton": "Add",
+    "table": {
+      "label": "Label",
+      "actions": "Actions"
+    }
+  },
+  "deleteDialog": {
+    "title": "Delete",
+    "header": "Are you sure you want to delete this card?",
+    "yesButton": "Yes, delete it",
+    "noButton": "No, nevermind"
   }
 }
