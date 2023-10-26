@@ -83,7 +83,7 @@ function Root() {
           </Box>
         )}
       </Flex>
-      <Flex flexDir="column" flexGrow={1}>
+      <Flex flexDir="column" flexGrow={1} position="relative">
         <Routes>
           <Route path="/" element={<Homepage />} />
         </Routes>

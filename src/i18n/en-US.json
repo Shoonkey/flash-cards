@@ -12,7 +12,8 @@
       "emptyCardPlaceholder": {
         "label": "Add cards to begin",
         "description": "Add at least 5 cards to begin studying"
-      }
+      },
+      "manageCardsButton": "Manage cards"
     }
   },
   "cardDialog": {

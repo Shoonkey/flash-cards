@@ -12,7 +12,8 @@
       "emptyCardPlaceholder": {
         "label": "Agrega tarjetas para empezar",
         "description": "Agrega al menos 5 tarjetas para empezar a estudiar"
-      }
+      },
+      "manageCardsButton": "Gerenciar tarjetas"
     }
   },
   "cardDialog": {

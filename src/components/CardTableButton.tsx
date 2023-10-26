@@ -1,14 +1,19 @@
-import { Button, Tooltip } from "@chakra-ui/react";
+import { IconButton, Tooltip } from "@chakra-ui/react";
 import { ListPlus } from "@phosphor-icons/react";
+import { useTranslation } from "react-i18next";
 
 interface EditCardsButtonProps {
   onClick: () => void;
 }
 
 function CardTableButton({ onClick }: EditCardsButtonProps) {
+  const { t } = useTranslation();
+
   return (
-    <Tooltip placement="left" label="Edit cards">
-      <Button
+    <Tooltip placement="left" label={t("pages.home.manageCardsButton")}>
+      <IconButton
+        icon={<ListPlus size={32} />}
+        aria-label={t("pages.home.manageCardsButton")}
         position="absolute"
         bottom={4}
         right={4}
@@ -18,12 +23,9 @@ function CardTableButton({ onClick }: EditCardsButtonProps) {
         w="64px"
         h="64px"
         borderRadius="50%"
-        aria-label="Add cards"
         onClick={onClick}
         zIndex={2}
-      >
-        <ListPlus size={32} />
-      </Button>
+      />
     </Tooltip>
   );
 }
