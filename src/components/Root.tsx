@@ -84,20 +84,6 @@ function Root() {
         )}
       </Flex>
       <Flex flexDir="column" flexGrow={1}>
-        {/* // TODO: Remove after translating to Spanish */}
-        {i18n.language === "es-ES" && (
-          <Box
-            mx="auto"
-            px={6}
-            py={4}
-            borderRadius="16px"
-            bg="gray.700"
-            _light={{ bg: "gray.300" }}
-            mb={2}
-          >
-            Esta página aún no está disponible en español.
-          </Box>
-        )}
         <Routes>
           <Route path="/" element={<Homepage />} />
         </Routes>
