@@ -70,7 +70,7 @@ function CardTableDialog({ open, onClose }: EditCardsDialogProps) {
         size="2xl"
       >
         <ModalOverlay />
-        <ModalContent maxH="80vh" overflowY="auto">
+        <ModalContent maxH="80vh" overflowY="auto" mx={4}>
           <ModalCloseButton />
           <ModalHeader>{t("cardTableDialog.title")}</ModalHeader>
           <ModalBody mb={4} display="flex" flexDir="column">

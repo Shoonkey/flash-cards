@@ -84,7 +84,7 @@ function CardDialog({
       isCentered
     >
       <ModalOverlay />
-      <ModalContent>
+      <ModalContent mx={6}>
         <ModalCloseButton />
         <ModalHeader>{t(`cardDialog.title.${mode}`)}</ModalHeader>
         <ModalBody mb={4}>

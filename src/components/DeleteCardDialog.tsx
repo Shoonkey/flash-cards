@@ -27,7 +27,7 @@ function DeleteCardDialog({ open, onClose, cardId }: DeleteCardDialogProps) {
   return (
     <Modal isOpen={open} onClose={onClose} isCentered size="xl">
       <ModalOverlay />
-      <ModalContent>
+      <ModalContent mx={6}>
         <ModalCloseButton />
         <ModalHeader>
           <Heading as="h1" size="md">
