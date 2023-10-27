@@ -1,5 +1,8 @@
 {
-  "appTitle": "Estudie teoría musical",
+  "appTitle": "Tarjetas de memoria",
+  "selectLanguage": "Seleccionar lenguaje",
+  "appSettings": "Configuraciones del app",
+  "changeTheme": "Cambiar tema",
   "pages": {
     "home": {
       "meta": {

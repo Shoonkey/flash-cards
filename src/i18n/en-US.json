@@ -1,5 +1,8 @@
 {
-  "appTitle": "Study music theory",
+  "appTitle": "Flash cards",
+  "selectLanguage": "Select language",
+  "appSettings": "App settings",
+  "changeTheme": "Change theme",
   "pages": {
     "home": {
       "meta": {
