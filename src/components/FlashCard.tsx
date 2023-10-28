@@ -1,5 +1,5 @@
 import { Box, Button, ButtonProps, Heading, Text } from "@chakra-ui/react";
-import { forwardRef, useRef, useState } from "react";
+import { forwardRef, useRef } from "react";
 
 import CardData from "../shared/CardData";
 import CardPosition from "../shared/CardPosition";
@@ -11,15 +11,20 @@ interface CardSideProps {
 }
 
 interface FlashCardProps extends Omit<CardData, "id"> {
+  isFlipped: boolean;
   position: CardPosition;
   onClick: () => void;
+  "aria-keyshortcuts": ButtonProps["aria-keyshortcuts"];
 }
 
 const CardSide = forwardRef<HTMLButtonElement, CardSideProps & ButtonProps>(
   ({ text, side, ...props }, ref) => {
     return (
       <Button
+        borderRadius="inherit"
         variant="unstyled"
+        _focus={{ outlineWidth: "2px", outlineColor: "cyan.200" }}
+        _light={{ _focus: { outlineWidth: "4px", outlineColor: "orange.700" } }}
         ref={ref}
         w="100%"
         h="100%"
@@ -47,19 +52,25 @@ function InactiveOverlay(props: ButtonProps) {
       position="absolute"
       w="100%"
       h="100%"
-      borderRadius="32px"
+      borderRadius="inherit"
       {...props}
     />
   );
 }
 
-function FlashCard({ position, frontText, backText, onClick }: FlashCardProps) {
-  const [flipped, setFlipped] = useState(false);
+function FlashCard({
+  isFlipped,
+  position,
+  frontText,
+  backText,
+  onClick,
+  "aria-keyshortcuts": ariaKeyShortcuts,
+}: FlashCardProps) {
   const frontBtnRef = useRef<HTMLButtonElement>(null);
   const backBtnRef = useRef<HTMLButtonElement>(null);
 
   const isActive = position === "middle";
-
+  
   const computedPosition: { top: number; left: number; rotation: number } = {
     top: 0,
     left: 0,
@@ -105,7 +116,6 @@ function FlashCard({ position, frontText, backText, onClick }: FlashCardProps) {
       w="min(80%, 400px)"
       h="300px"
       style={{ perspective: "1000px" }}
-      onClick={() => isActive && setFlipped(!flipped)}
     >
       <Box
         bg="#3c008f"
@@ -115,7 +125,7 @@ function FlashCard({ position, frontText, backText, onClick }: FlashCardProps) {
         h="100%"
         transition="transform .4s"
         style={{ transformStyle: "preserve-3d" }}
-        transform={`rotateY(${isActive && flipped ? -180 : 0}deg)`}
+        transform={`rotateY(${isActive && isFlipped ? -180 : 0}deg)`}
         boxShadow={
           isActive ? "0px 16px 31px -22px rgba(87,87,87,1)" : undefined
         }
@@ -129,10 +139,11 @@ function FlashCard({ position, frontText, backText, onClick }: FlashCardProps) {
           ref={frontBtnRef}
           side="front"
           text={frontText}
-          aria-hidden={!flipped}
-          tabIndex={isActive && !flipped ? 0 : -1}
+          aria-hidden={!isFlipped}
+          aria-keyshortcuts={!isFlipped ? ariaKeyShortcuts : ""}
+          tabIndex={isActive && !isFlipped ? 0 : -1}
           onClick={() => {
-            setFlipped(true);
+            onClick();
             backBtnRef.current?.focus();
           }}
         />
@@ -140,10 +151,11 @@ function FlashCard({ position, frontText, backText, onClick }: FlashCardProps) {
           ref={backBtnRef}
           side="back"
           text={backText}
-          aria-hidden={flipped}
-          tabIndex={isActive && flipped ? 0 : -1}
+          aria-hidden={isFlipped}
+          aria-keyshortcuts={isFlipped ? ariaKeyShortcuts : ""}
+          tabIndex={isActive && isFlipped ? 0 : -1}
           onClick={() => {
-            setFlipped(false);
+            onClick();
             frontBtnRef.current?.focus();
           }}
         />

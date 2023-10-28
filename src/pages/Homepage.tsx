@@ -22,11 +22,13 @@ import {
   getNextStage,
   getStageCards,
 } from "../util/stage";
+import CardPosition from "../shared/CardPosition";
 
 interface AppMetadata {
   playable: boolean;
   stage: ViewStage;
-  cards: (CardData | null)[];
+  cards: CardData[];
+  activeCardFlipped: boolean;
 }
 
 function FlashCardApp() {
@@ -39,6 +41,7 @@ function FlashCardApp() {
     playable: false,
     stage: "none-left",
     cards: [],
+    activeCardFlipped: false,
   });
 
   useEffect(() => {
@@ -52,20 +55,21 @@ function FlashCardApp() {
   }, []);
 
   useEffect(() => {
-    // TODO: Set aria-keyshortcuts on previous and next cards
-
     const handleKeyPress = (e: KeyboardEvent) => {
       if (e.shiftKey || e.ctrlKey || e.metaKey) return;
 
       if (e.key === "ArrowLeft") {
-        // TODO: Move to previous card and focus it
-        console.log("Pressed <");
+        updateStage("left");
         return;
       }
 
       if (e.key === "ArrowRight") {
-        // TODO: Move to next card and focus it
-        console.log("Pressed >");
+        updateStage("right");
+        return;
+      }
+
+      if (e.key.toUpperCase() === "F") {
+        flipActiveCard();
         return;
       }
     };
@@ -73,6 +77,56 @@ function FlashCardApp() {
     document.body.addEventListener("keyup", handleKeyPress);
     return () => document.body.removeEventListener("keyup", handleKeyPress);
   }, []);
+
+  const flipActiveCard = () => {
+    setMetadata((data) => ({
+      ...data,
+      activeCardFlipped: !data.activeCardFlipped,
+    }));
+  };
+
+  const updateStage = (clickedPosition: "left" | "right") => {
+    setMetadata((data) => {
+      const nextStage = getNextStage(data.stage, clickedPosition);
+      const stageCards = getStageCards(nextStage, clickedPosition, data.cards);
+
+      return {
+        ...data,
+        stage: nextStage,
+        cards: stageCards,
+        activeCardFlipped: false,
+      };
+    });
+  };
+
+  const handleCardClick = (clickedPosition: CardPosition) => {
+    if (
+      !metadata.playable ||
+      clickedPosition === "invisible-left" ||
+      clickedPosition === "invisible-right"
+    )
+      return;
+
+    if (clickedPosition === "middle") {
+      flipActiveCard();
+    } else {
+      updateStage(clickedPosition);
+    }
+  };
+
+  const getShortcutKey = (position: CardPosition) => {
+    if (position === "invisible-left" || position === "invisible-right")
+      return "";
+
+    switch (position) {
+      case "left":
+        return "&larr;";
+      case "right":
+        return "&rarr;";
+      case "middle":
+        return "F";
+    }
+  };
 
   const cardPositions = getStageCardPositions(metadata.stage);
 
@@ -105,6 +159,7 @@ function FlashCardApp() {
             <FlashCard
               key={metadata.cards[index]?.id || index}
               position={position}
+              isFlipped={metadata.activeCardFlipped}
               frontText={
                 metadata.cards[index]?.frontText ||
                 t("pages.home.emptyCardPlaceholder.label")
@@ -113,21 +168,8 @@ function FlashCardApp() {
                 metadata.cards[index]?.backText ||
                 t("pages.home.emptyCardPlaceholder.description")
               }
-              onClick={() => {
-                if (!metadata.playable) return;
-                const nextStage = getNextStage(metadata.stage, position);
-                const stageCards = getStageCards(
-                  metadata.stage,
-                  position,
-                  metadata.cards as CardData[]
-                );
-
-                setMetadata({
-                  ...metadata,
-                  stage: nextStage,
-                  cards: stageCards,
-                });
-              }}
+              onClick={() => handleCardClick(position)}
+              aria-keyshortcuts={getShortcutKey(position)}
             />
           );
         })}
@@ -136,7 +178,7 @@ function FlashCardApp() {
         <UnorderedList
           listStyleType="none"
           display="flex"
-          gap={2}
+          gap={3}
           color="gray.500"
           mx="auto"
         >
@@ -145,6 +187,9 @@ function FlashCardApp() {
           </ListItem>
           <ListItem>
             <Kbd>&rarr;</Kbd> Next card
+          </ListItem>
+          <ListItem>
+            <Kbd>F</Kbd> Flip card
           </ListItem>
         </UnorderedList>
         <Heading as="h3" size="sm" color="gray.500">
