@@ -1,5 +1,5 @@
 import { Box, ButtonProps } from "@chakra-ui/react";
-import { useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 
 import CardData from "../../shared/CardData";
 import CardPosition from "../../shared/CardPosition";
@@ -27,6 +27,11 @@ function FlashCard({
   const isActive = useMemo(() => position === "middle", [position]);
 
   const computedPosition = getComputedPosition(position);
+
+  useEffect(() => {
+    if (!isActive || !frontBtnRef.current) return;
+    frontBtnRef.current.focus();
+  }, [isActive]);
 
   return (
     <Box
